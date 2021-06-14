@@ -1,0 +1,622 @@
+The well grounded Rubyist:
+  Submódulo 2:
+    Objects, methods and local variables
+
+    - Cómo se comportan los objetos en el mundo real, cómo interactuan los objetos entre sí
+    - Hacer que nuestro objeto hable
+    - Paréntesis opcionales a la hora de llamar un método y las excepciones
+    - Preguntarles a objetos por información y por que hagan cosas
+    - Interpolación
+    - Comparaciones de objetos
+    - Comportamiento innato de los objetos
+    - respond_to?
+    - splat operator, argumentos opcionales
+    - orden de jerarquía de los args
+    - scopes de métodos
+    - referencias de objetos - guardan referencias y no definiciones
+    - el ejemplo de los perros
+    - freeze, dup and clone
+
+  Submódulo 3:
+    Organizing objects with classes
+
+    - métodos de instancia
+    - diferencias de variables de instancia con respecto a las normales
+    - método getter y setter
+    - herencia de objetos
+    - Object y BasicObject
+    - singleton methods
+    - constantes
+    - variación del comportamiento de los objetos con respecto a su nacimiento
+    - an object’s class is only part of the story—
+
+  Submódulo 4:
+    Modules and program organization
+
+    - los modulos no se pueden instanciar
+    - or equals operator
+    - modularización de código y cómo se comparte entre clases
+    - domain lenguaje y sobrescribir methods
+    - el punto de vista de un objeto
+    - el method look up de un objeto
+    - include -> instance methods
+    - prepend -> instance methods con preferencia de los del módulo
+    - extend -> class methods
+    - ejercicio del method lookup
+    - super y el method lookup
+    - method and super_method
+    - method_missing
+    - al objeto no le importa dónde están definidos los métodos
+    - las clases suelen ser sustantivos y los modulos son adjetivos o caracteristicas
+    - nesting modules and classes aka: namespaces -> mango de un cuchillo a mango de fruta
+    - el nombre de las clases no nos dice nada pero esto es una prueba de que debemos elegir los
+      nombres correctos
+
+    ##### Valid for talk
+
+  Submódulo 5:
+    The default object (self), scope, and it's visibility
+
+    - self, el yo del programa que se está corriendo actualmente
+    - class, module and def marks a switch to a new self
+    - métodos de clase
+    - cuáles son los privilegios de ser self? self se vuelve el reciver por default de los mensajes
+    - las variables de instancia van atadas a su self
+    - scopes
+    - local scopes
+    - constantes
+    - scope de las contantes
+    - absolute path for constants
+    - herencia de variables de clase, se comparten entre clases
+    - reglas de acceso a los métodos
+    - private, no se le puede especificar al método quién es su receptor
+    - protected, permite llamar un método de un objeto siempre y cuando el self en este contexto
+      sea de la clase de ese objeto
+
+      es como un método privado con la excepción de que si la clase de self y del objeto donde
+      llamamos el método son las mismas o están relacionadas por herencia, se puede ejecutar
+
+  Submódulo 6:
+    Control-flow techniques
+
+    conditional execution:
+      - tomar decisiones de acuerdo a ciertas condiciones
+      - la indentación y cerrar el condicional es importante
+      - condicionales modificadores
+      - === en los cases
+    looping:
+      - loop
+      - break and next keyword
+      - while y until
+    iterators and code blocks:
+      - code blocks
+      - times
+    errors:
+      - manejo de errores
+      - rescue
+      - rescue de errores específicos
+      - binding.irb
+      - safe navigation
+      - por default raise lanza un RuntimeError
+      - ensure
+      - podemos crear nuestras propias excepciones
+
+  Submódulo 7:
+    Built-in essentials
+
+    syntactic sugar con los nombres de los métodos:
+      algo luce como un operador pero realmente es un método
+    bang methods ! and danger:
+      - hay que considerar bien cuándo deberíamos usar qué versión del método porque tienen
+        implicaciones
+
+      - el bang no significa per sé destructividad, nos quiere dar un aviso sobre su contraparte, que
+        sería el método pero sin el bang
+
+    to_* methods:
+      - to_s, puts and interpolations
+      - display nos permite escribir en un IO stream, por ejemplo un file
+      - splat opertaror y listas
+      - to_i, to_f and String.to_f/.to_i
+    boolean states, boolean objects and nil:
+      - all of the sentences evaluates to a boolean value
+      - 0, "", [] and { } evaluate to true
+      - nil is an object that demonstrates nonobjectness
+    comparando 2 objetos:
+      - ==, === y eql
+      - comparar 2 objetos custom con el <=>
+    Inspecting object capabilities:
+      - .methods
+      - .instance_methods
+
+  Submódulo 8:
+    Strings, symbols and other scalar objects
+
+    scalar -> atómico, unidimensional -> "", 1, 1.0
+    non-scalar -> bidimensional, colección de elementos -> { name: 123 }, [1,2,3]
+
+    Strings:
+      - '' & "" and interpolations
+      - \n, \t and scape caracters with \
+      - %q, %Q, %{}
+      - here documents == multiline ""
+
+      operaciones:
+        - substrings = string[index]
+        - get a substrict of n characters from m =  string[m, n]
+        - get a range of the string = string[n..m]
+        - search a string in the string = string[search]
+        - slice es un alias de slice pero slice tiene un ! method que modifica el valor del objeto
+        - pare reemplazar un valor de un texto = string[search/index] = new_value
+        - literally we can interpolate ANY code
+        - .include to know if a string has a substring into - returns a boolean value
+        - start_with and end_with
+        - .empty?
+        - size and length
+        - count the ocurrences of a letter in a string, can receive one or more
+          ocurrences = count(letter/range/regex/letters_collection) negation with count(^letter)
+      transformations:
+        - case: upcase, downcase, capitalize, ! versions
+      content transformation:
+        - chomp
+        - clear
+        - replace
+      conversions:
+        - to_i, to_f, to_sym
+      encoding:
+        - magic comment encoding
+
+    Symbols:
+      - immutability = no se pueden cambiar de ninguna manera como los números
+      - uniqueness = :example will be the same object ever
+      - symbols are faster in hash keys
+
+    Numerical:
+      - Numeric is the high level class of Integer and Float
+
+    Times and dates:
+      Date:
+        - Date.today
+        - Date.parse to parse strings into dates objects
+        - Date.next_unit
+        - Date.prev_unit
+
+      Time:
+        - Time.parse
+        - Time.mktime
+
+  Submódulo 9:
+    Collection and container objects
+
+    Array:
+      can be initializated with:
+        - Array.new(elements_in_array, value_of_elements) { set_value_for_elements }
+        - a = [any_element]
+        - Array(element) # calls to_a / to_ary on the element
+
+      - %w, %W
+      - %i, %I
+      - .dig
+
+      multi-element operations:
+        - a = %w[red orange yellow purple gray indigo violet]
+        - a[3, 2] # => ["purple", "gray"]
+        - a[3, 2] = "green", "blue" # => ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+
+      add and get elements:
+        - add an object to the beginning: array.unshift(new_value)
+        - add an object to the end: array.push(new_value or new_values) or array << new_value
+
+        - remove an object to the beginning: array.shift(number_of_elements to remove, default 1)
+        - remove an object to the end: array.pop(number_of_elements to remove, default 1)
+
+      combining arrays:
+        - concat, changes the receiver of the method: [1,2,3].concat([4,5,6])
+        - +, to get a new object: a = [1, 2, 3] + [4, 5, 6]
+
+      array transformations:
+        - flatten, un-nesting of arrays: array.flatten(level_of_un-nesting, default all)
+        - reverse, reverse the order of the array: array.reverse
+        - join
+        - uniq
+        - compact, to remove nil from arrays
+
+    Hashes:
+      can be initializated with:
+        - a = {}
+        - Hash.new
+        - Hash['Connecticut', 'CT', 'Delaware', 'DE' ] # => {'Connecticut'=>'CT', 'Delaware'=>'DE'}
+        - Hash([]), nil, or a element with .to_hash method
+
+      Inserting, retrieving, and removing hash pairs:
+        - add a key/value pair to a hash: hash[:key] = value
+        - to get an element from a hash: hash[key] or hash.fetch(key, default_value), fetch will raise an
+          exception if the key doesn't exist and accept and a default value
+
+      Specifying default hash values and behavior:
+        - h = Hash.new(0 #default_value)
+        - h['no such key!'] # => 0
+
+      Combining hashes with other hashes:
+        - update, changes the receiver of the method: { name: 'Juan' }.update({ last_name: '123' })
+        - merge, to get a new objeect: { name: 'Juan' }.merge({ last_name: '123' })
+
+      Hash transformations:
+        - select, to filtrate key/value pairs of the hash,
+          { 1 => 2, 3 => 4, 5 => 6 }.select { |k, v| v > 3 } # => { 3 => 4, 5 => 6 }
+        - reject, the opposite to select
+        - compact, to remove keys with nil values
+
+      hashes as a last arguments of a method
+      keyword arguments
+
+    Ranges:
+      can be initializated with:
+        - Range.new(1, 100)
+        - a = 1..100
+
+      inclusion logic:
+        - cover?, compares the end and start of range, r = 'a'..'z'; r.cover?('abc') # => true
+        - include?, works as enumerable, r = 'a'..'z'; r.include?('abc') # => false
+
+    Sets:
+      can be initializated with:
+        - Set.new(['Connecticut', 'Maine', 'Massachusetts', 'New Hampshire'])
+
+      Inserting, retrieving, and removing elements:
+        - <<, to add an object
+        - .delete, to remcove an object from the set
+
+      Set intersection, union and diference:
+        - difference (-), objects that receiver has but other set not
+        - union (+), to concat both sets
+        - intersection (&), commont objects from both sets
+
+  Submódulo 10:
+    Collections central numerable and Enumerator
+
+    - requirements to include Enumerable into a class?
+
+    boolean operations:
+      - .include?
+      - .any?
+      - .all?
+      - .none?
+      - .one?
+
+    searching and selecting:
+      - .find
+      - .select, aka: .find_all
+      - .reject
+      - .grep
+
+    Relatives of each:
+      - .reverse_each
+      - .each_with_index
+      - .each.with_index
+      - .each_slice, yield a block of element at each interpolations
+      - .each_cons, yield a new block each element, produces overlapping arrays
+      - .cicle, how many times you want to iterate a collection
+      - .reduce
+      - .map
+
+      #string
+      - .each_byte
+      - .each_char
+      - .each_codepoint
+      - .each_line
+
+    Sorting:
+      - .sort
+      - .sort_by {  }
+
+    Enumerators:
+      enumerators are very closely to iterators, but the difference is that an iterator is a
+      method that yields one or more values, an enumerator is an object that yields one or more
+      values.
+
+      an enumerator attaches itself to a particular method on a particular object
+      and uses that method as the foundation method—the each—for the entire enumerable toolset.
+
+      - Enumerators maintain state of the currently iteration
+      - with enumerators we can make non-enumerable objects act like an enumerable
+      - lazy enumerators to handle infinite collections
+      determine_iva: @hotel.hotel_profile&.regime == 'common' && customer_is_foreign && @hotel.country_code.eql?('CO')
+
+      determine_iva: @hotel.hotel_profile&.&common && customer_is_foreign && @hotel.country_code.eql?('CO')
+
+  Submódulo 11:
+    Regex
+
+    las regex son patrones para identificar si un String cumple con una condición, predicciones.
+
+    se pueden instanciar como:
+      - //
+      - %r{}
+
+    podemos testearlas con:
+      - .match?
+      - =~
+
+    - Se puede poner cualquier carácter alfanúmerico en una regex, i.e: /a/
+    - Para escapar un carácter, se hace con un \ i,e: /\?/
+    - El . significa que puede ser reemplazado por cualquier carácter a menos de una breakline,
+      i.e: /.ejected/ podemos limitar los carácteres a los cuales hace match con [],
+      i.e: /[rd]ejeccted/ también podemos pasar un rango de carácteres [a-z]
+
+    - Para traer todas los matches excepto lo que esté en la regex usamos ^, i.e: /[^0-9]/
+    - Para hacer match de cualquier dígito /\d/
+    - Para agrupar los resultados que queremos de una regex (), nos devuelve los resultados
+      en variables globales empezando desde $1, $2, etc
+    - Para tener resultados con un nombre en específico: <name>,
+      i.e: %r{(?<first>\w+)\s+((?<middle>\w\.)\s+)(?<last>\w+)}
+
+
+    quantifiers:
+      nos permiten especificar cuantas veces debe hacer match.
+
+      - cero o uno, ?: /Mrs?\.?/ un string con la s va a hacer match o uno sin la s también
+      - cero o más, *: /<\s*\/\s*poem\s*>/ permitirá que la etiqueta </poem> tenga todos los
+        whitespaces que quiera
+      - uno o más, +: /\d+/.match?("There’s a digit here somewh3re...")
+
+      - * y +, son greedy, devuelven todos los match que encuentren
+      - para especificar la cantidad de matches que queremos, {}, i.e: /\d{3}
+        para rangos, {1,10}
+        para rangos de n o + dígitos, {1,}
+
+    anchors and assertions:
+      expresan condiciones que se deben cumplir antes de empezar a hacer match de los carácteres.
+
+      - comienzo de línea, ^: /^\s*#/, i.e: /^\s*#/.match(' # Pure comment!')
+      - final de línea, $
+      - comienzo de String, \A
+      - final de String, \z
+
+    conditional matches:
+      a conditional match tests for a particular capture (by
+      number or name), and matches one of two subexpressions based on whether or not
+      the capture was found. i.e: /(a)?(?(1)b|c)/
+
+    modifiers:
+      - case insensitive, i: i.e: /abc/i
+      - ignores whitespaces, permite add comments to the regex, x:
+        /
+          \((\d{3})\) # 3 digits inside literal parens (area code)
+            \s # One space character
+          (\d{3}) # 3 digits (exchange)
+            - # Hyphen
+          (\d{4}) # 4 digits (second part of number
+        /x
+
+        is the same as: /\((\d{3})\)\s(\d{3})-(\d{4})/
+
+    String interpolation inside a regex:
+      str = "def"
+      /abc#{str}/
+      => /abcdef/
+
+    regex to String:
+      /abc/.inspect
+
+    regex methods:
+      - .scan, goes from left to right testing repeatedly for a match and return an array,
+        i.e: 'testing 1 2 3 testing 4 5 6'.scan(/\d/) =>  ['1', '2', '3', '4', '5', '6'],
+        can take a block and do something with each match but doesn't store the array.
+
+      - .split, accept a String or a regex to split an array,
+        i.e: 'Ruby'.split(//) => ['R', 'u', 'b', 'y']
+
+      - .sub, takes an String or a regex and the value of replacement, replaces one time,
+        i.e: 'typigraphical error'.sub(/i/, 'o') => 'typographical error'
+
+      - gsub, takes an String or a regex and the value of replacement, replaces everywhere,
+        i.e: 'capitalize every word'.gsub(/\b\w/) { |s| s.upcase } => 'Capitalize Every Word'
+
+
+  Submódulo 12:
+    File and I/O operations
+
+    - la clase IO es la padre de todo lo que tiene que ver con este tema
+    - los objetos IO representan una conexión de escritura y/o lectura a discos duros, la terminal,
+      pantallas, etc.
+    - IO objects are enumerable
+
+    - File
+      reading:
+        - .read, read the entire file as a string, File.read
+        - .gets, read the next line from the file
+        - .readlines, converts each line as a part of an array, File.readlines
+        - .each, to iterate each line of the file
+        - .getc, returns a character from the file
+        - .pos, returns the current position of the pointer in the file
+        - .rewind, returns the file to the first position
+
+      writing:
+        - if we call File.open with a block isn't neccessary to close the file
+
+      querying:
+        - .exists?
+        - .empty?
+        - .directory?
+        - .file?
+        - .symlink?
+        - readable?
+        - writable?
+        - executable?
+        - .size
+
+    - Directoy manipulation
+      - Dir.entries, to get the files of a dir
+      - Dir.glob, to glob a directory, you can pass regex to the entries matcher
+      - Dir.mkdir(path_dir), to create a dir
+      - Dir.empty?
+      - Dir.rmdir
+
+    - FileUtils library
+      - .cp
+      - .mkdir
+      - .mv
+      - .rm_rf
+      - FileUtils::DryRun::rm_rf/command to see what would happen if we are going to run a
+        particular FileUtils command.
+      - FileUtils::NoWrite::rm/command does not perform delete, overwrite, move or write operations
+
+    - Pathname library
+      - .base_name, to see the base name of the pathname
+      - .extension, to get the extension
+      - .ascend, to walk up the file's directory structure
+
+    - StringIO
+      allows us to treat strings like IO objects.
+
+    - open-uri
+      allows us to retrieve information from the network using HTTP or HTTPS
+
+
+  Submódulo 13:
+    object individualization
+
+    the ability of individual objects to behave differently from other objects of the same
+    class.
+
+    what kind of objects can't define singleton methods? integers, floats, decimals
+
+    - la singleton class es lo primero que un objeto evalúa a la hora de resolver los mensajes
+      que le llegan
+
+    - .ancestors
+
+    - overwrite Ruby core methods, nunca debemos cambiar los métodos del core si estamos
+      afectando el funcionamiento que esperan las demás personas
+
+    - .tap method
+
+    cómo modificar las clases del core de manera segura:
+      - additive changes: es añadir un método que no existe, el único riesgo que se corre es
+        que otra persona añada el mismo método y sólo uno de ellos permanezca.
+
+      - pass-through overrides: esta técnica implica sobreescribir un método y añadirle
+        funcionalidad pero que al final siga ejecutando el método original.
+
+      - additive/pass-through hybrids: son métodos que implican añadirle más comportamiento a
+        la interfaz del método pero no sobrescribirlo.
+
+      - per object behavior: extend method
+
+        class Pepe
+          extend Module
+        end
+
+        Pepe.extend Module
+
+      - refinements: hacer cambios a las clases del core en cierto scope sin tener side-effects
+        globales.
+
+      - beneficios de usar BasicObject
+
+  Submódulo 14:
+    callable and runnable objects
+
+    procs:
+      - Proc.new or proc
+      - un bloque que se pasa a una función puede ser convertido a un proc
+      - & keyword para convertir blocks en procs y procs en blocks en los métodos
+      - los procs sirven como closures, mantienen las variables del entorno en que fueron
+        inicializados
+      - a los procs que reciben argumentos no les importa la cantidad de args que les envían
+
+    lambdas:
+      son 'primos de los procs'
+
+      se diferencian en:
+        - estas no son tan permisivas con los argumentos, tienen que recibir los esperados
+        - requieren ser creados de manera explicita
+        - el return desde una lambda termina la ejecución desde el contexto de la lambda, desde un
+          proc termina la ejecución de donde esté el proc.
+        - stabby lambda: -> { ... }, -> (arg1, arg2) { ... }
+
+    eval:
+      permite ejecutar código de manera dinámica que esté en un string
+
+      - puede ser peligroso porque le pueden enviar el string que quieran. Ruby tiene maneras de
+        hacer esto más seguro como: .tainted? y $SAFE pero la manera más segura es no usar eval.
+
+      - instance_eval, que ejecuta el string o el block en el objeto que se ejecute el método
+
+      - class_eval, que ejecuta el string o el block en la clase donde ejecutamos el método. Este
+        método también tiene todo el scope que lo rodea.
+
+    concurrent execution with threads:
+      - nos podemos asegurar que el Thread termine de ejecutarse asignándolo a una variable y
+        usando el método .join
+      - para matar un Thread podemos usar: .kill, .exit, .terminate
+      - podemos usar .stop para parar la ejecución de un Thread
+      - podemos preguntar el status de un Thread con .status
+      - podemos preguntar el estado directamente también con: .alive?, .stop?
+      - podemos continuar la ejecución de un Thread con .wakeup
+
+    system commands from Ruby programs:
+      - system, calls a system program. It creates a global variable $? that contains info about
+        the call
+      - ``, calls a system program and return its output
+      - exec, replace the current process with a new shell session
+
+    Open3 library:
+      nos permite comunicarnos con un programa externo y nos da acceso a su standard input,
+      standard output y standar error.
+
+  Submódulo 15:
+    callbacks, hooks and runtime instrospection
+
+    Ruby provides: the more you learn about the language, the more you can learn.
+
+    callbacks:
+      - method_missing
+      - included, prepended, extended
+      - inherited
+      - const_missing
+      - method_added, trigered when a new singleton method is defined
+      - singleton_method_added, the same but for singleton methods
+
+    object capability queries:
+      - .methods, to list public and protected methods of an object
+      - .instance_methods, returns all public and protected instance methods (for classes and
+        modules)
+      - .public_instance_methods, returns all public instance methods
+      - .protected_instance_methods, same for protected methods
+      - .privated_instance_methods, same for private methods
+      - to know if a class overwrite some module methods:
+
+        Range.instance_methods(false) & Enumerable.instance_methods(false)
+        => [...] # methods overwritten
+
+      - singleton_methods, returns all object public and protected singleton methods
+
+    variables and constants introspection:
+      - .local_variables
+      - .global_variables
+      - .instance_variables
+
+    tracing execution:
+      - .caller, to get the stack trace of the execution to get where we are.
+
+  Submódulo 16:
+    functional programming
+
+    - el core de la programación funcional son las pure functions, funciones que cuando se le dan
+      los mismos argumentos siempre van a devolver el mismo resultado sin ningún tipo de side
+      effect.
+
+    - state de los objetos, qué es?
+    - mientras más grandes sean los sistemas, más complicado será modificar el state de los objetos
+    - los lenguajes funcionales son inmutables
+    - .freeze y .frozen
+    - podemos hacer que todos los strings de un programa estén frozen con esta sentencia al inicio
+      del archivo: # frozen_string_literal: true
+    - Ruby 3.0 con frozen strings?
+    - higher order function: un método que recibe una función como un argumento o que retorna una
+      función.
+    - .itself, .yield_itself
+    - partially applied functions: funciones que si no reciben los parámetros que necesita,
+      retornan otra función que ya resta ese parámetro ya existente y lo tiene en cuenta. .curry
